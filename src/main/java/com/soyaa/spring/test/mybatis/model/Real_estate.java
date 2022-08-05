@@ -10,7 +10,7 @@ public class Real_estate {
 	private int area;
 	private String type;
 	private int price;
-	private String rentPrice;
+	private Integer rentPrice;
 	private Date createdAt;
 	private Date updatedAt;
 	public int getId() {
@@ -49,10 +49,10 @@ public class Real_estate {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getRentPrice() {
+	public Integer getRentPrice() {
 		return rentPrice;
 	}
-	public void setRentPrice(String rentPrice) {
+	public void setRentPrice(Integer rentPrice) {
 		this.rentPrice = rentPrice;
 	}
 	public Date getCreatedAt() {
@@ -67,5 +67,7 @@ public class Real_estate {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	
 
 }

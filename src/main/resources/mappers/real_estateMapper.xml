@@ -5,7 +5,11 @@
 
  
  <mapper namespace="com.soyaa.spring.test.mybatis.dao.Real_estateDAO">
- 	<select id="selectReal_estate" resultType="com.soyaa.spring.test.mybatis.model.Real_estate">
+ 	
+ 	<!-- 하나의 메소드를 호출했을 때 하나의 쿼리가 수행됨 -->
+ 	<!-- 쿼리 하나당 메소드 하나! -->
+ 	<select id="selectReal_estate" resultType="com.soyaa.spring.test.mybatis.model.Real_estate"
+ 		parameterType="int">
  		SELECT 
  			`id`
  			, `realtorId`
@@ -20,5 +24,55 @@
  			`real_estate`
  		WHERE `id` = #{id};
  	</select>
- 
+	<select id="selectReal_estateRentPrice" resultType="com.soyaa.spring.test.mybatis.model.Real_estate"
+		parameterType="Integer">
+ 		SELECT 
+ 			`id`
+ 			, `realtorId`
+ 			, `address`
+ 			, `area`
+ 			, `type`
+ 			, `price`
+ 			, `rentPrice`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`real_estate`
+ 			
+ 			<!-- mybatis xml 부등호 검색
+ 			WHERE `rentPrice`<![CDATA[ < ]]> #{rentPrice} 
+ 			이렇게 해도 되고, 
+ 			아예 쿼리를 다 <![CDATA[ ]]> 로 묶어도 가능
+ 			 -->
+ 		WHERE <![CDATA[ `rentPrice` <  #{rentPrice} ]]>	
+	</select> 	
+	
+	<select id="selectReal_estateAreaPrice" resultType="com.soyaa.spring.test.mybatis.model.Real_estate"
+		parameterType="int">
+		SELECT 
+ 			`id`
+ 			, `realtorId`
+ 			, `address`
+ 			, `area`
+ 			, `type`
+ 			, `price`
+ 			, `rentPrice`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`real_estate`
+ 		WHERE <![CDATA[
+ 			`type` = '매매'
+ 			AND `area` >= #{area}
+ 			AND `price` <= #{price}]]>
+ 		ORDER BY `createdAt` DESC;	
+	</select>
+ 	
+ 	<insert id="insertReal_estateByObject" parameterType="com.soyaa.spring.test.mybatis.model.Real_estate">
+ 		INSERT INTO
+ 		(
+ 		
+ 		)
+ 	</insert>
+ 	
  </mapper>
