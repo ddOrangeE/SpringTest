@@ -26,5 +26,26 @@ public interface Real_estateDAO {
 	
 	// 1번
 	public int insertReal_estateByObject(Real_estate real_estate);
+		
 	
+	// 2번
+	public int insertReal_estate(
+			@Param("realtorId") int realtorId
+			, @Param("address") String address
+			, @Param("area") int area
+			, @Param("type") String type
+			, @Param("rentPrice") Integer rentPrice
+			, @Param("price") int price);
+	
+	// test03
+	public int updateReal_estate(
+			
+			// 해당 데이터를 쿼리안에서 수행하려면 @Param 어노테이션을 사용해야함
+			@Param("id") int id
+			, @Param("type") String type
+			, @Param("price") int price
+			);
+	
+	// test04
+	public int deleteReal_estate(@Param("id") int id);
 }

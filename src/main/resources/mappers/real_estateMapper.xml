@@ -68,11 +68,80 @@
  		ORDER BY `createdAt` DESC;	
 	</select>
  	
+ 	
+ 	<!-- insert 할 때 sql 에서 null을 사용하는 형태로 정의가 되어있는 경우
+ 	insert 할 때 그 부분을 없애 버리면(컬럼) NULL 로 저장이 된다 -->
  	<insert id="insertReal_estateByObject" parameterType="com.soyaa.spring.test.mybatis.model.Real_estate">
  		INSERT INTO
+ 			`real_estate`
+ 		(	
+			 `realtorId`
+ 			, `address`
+ 			, `area`
+ 			, `type`
+ 			, `price`
+ 		<!-- 	, `rentPrice` -->
+ 			, `createdAt`
+ 			, `updatedAt`
+ 			
+ 		)
+ 		VALUES
  		(
- 		
+ 			#{realtorId}
+ 			, #{address}
+ 			, #{area}
+ 			, #{type}
+ 			, #{price}
+ 		<!--  	, #{rentPrice} -->
+ 			, now()
+ 			, now()
  		)
  	</insert>
+ 	
+ 	<insert id="insertReal_estate" parameterType="map">
+ 		INSERT INTO
+ 			`real_estate`
+ 		(
+ 			 `realtorId`
+ 			, `address`
+ 			, `area`
+ 			, `type`
+ 			, `price`
+ 			, `rentPrice`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{realtorId}
+ 			, #{address}
+ 			, #{area}
+ 			, #{type}
+ 			, #{price}
+ 			, #{rentPrice}
+ 			, now()
+ 			, now()
+ 		)
+ 	</insert>
+ 	
+ 	<update id="updateReal_estate" parameterType="map">
+ 		UPDATE 
+ 			`real_estate`
+ 		SET
+ 		<!-- 조건이 아닐 땐 나열할 때 쉼표! -->
+ 			`type`= #{type}
+ 			, `price` = #{price} 
+ 			, `updatedAt` = now()      <!-- 이거 안하면 updatedAt 만든이유 없음!!!! 까먹지 말기 -->
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
+ 	
+ 	<!-- 실행되는 행의 개수가 return 되는 애들은 무조건 resultType 필요 없다 -->
+ 	<delete id="deleteReal_estate" parameterType="int">
+ 		DELETE FROM
+ 			`real_estate`
+ 		WHERE 
+ 			`id` = #{id}
+ 	</delete>
  	
  </mapper>

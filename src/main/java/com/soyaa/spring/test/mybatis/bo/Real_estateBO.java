@@ -39,8 +39,30 @@ public class Real_estateBO {
 	// test02
 	
 	// 1번
-	public int addReal_estateByObject() {
-		
+	public int addReal_estateByObject(Real_estate real_estate) {
+		return real_estateDAO.insertReal_estateByObject(real_estate);
+	}
+	
+	// 2번
+	// java 문법 그대로 사용
+	public int addReal_estate(int realtorId
+			, String address
+			, int area
+			, String type
+			, int price
+			, Integer rentPrice) {
+		return real_estateDAO.insertReal_estate(realtorId, address, area, type, rentPrice, price);
+	}
+	
+	// test03
+	
+	public int updateReal_estate(int id, String type, int price) {
+		return real_estateDAO.updateReal_estate(id, type, price);
+	}
+	
+	// test04
+	public int deleteReal_estate(int id) {
+		return real_estateDAO.deleteReal_estate(id);
 	}
 	
 }
