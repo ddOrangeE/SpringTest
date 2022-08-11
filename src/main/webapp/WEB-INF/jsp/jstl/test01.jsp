@@ -66,7 +66,7 @@
 	<%-- 5번 --%>
 	<h4>JSTL core if</h4>
 	<c:if test="${(number1 * number2) > 100 }">
-		<c:out value="<script>aler('너무 큰 수 입니다')</script>" escapeXml="false" />
+		<c:out value="<script>alert('너무 큰 수 입니다')</script>" escapeXml="false" />
 	</c:if>
 	
 	<%--
