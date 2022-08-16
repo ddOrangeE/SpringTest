@@ -35,6 +35,8 @@
 				<tr>
 					<td>${status.count }</td>
 					<td><fmt:formatNumber value="${candidate }" /></td>
+					
+					<%-- 원래같으면 ${candidate / 1000000 * 100} 까지 해주어야 percent 완성인데 *100 은 format라이브러리가 알아서 해준다 --%>
 					<td><fmt:formatNumber value="${candidate / 1000000 }" type="percent" /></td>
 				</tr>				
 				</c:forEach>
@@ -60,7 +62,9 @@
 					<td>${cardBill.store }</td>
 					<td><fmt:formatNumber value="${cardBill.pay }" type="currency" /></td>
 					<fmt:parseDate value="${cardBill.date }" pattern="yyyy-MM-dd" var="date" />
-					<td><fmt:formatDate value="${date }" pattern="yyyy년 MM월 dd일" /></td>
+					
+					<%-- formatDate 가 해주는 일은 date 객체를 우리가 원하는 형식으로 바꾸어주는 일, 주어진 문자열을 date객체로 만들어내고 만들어낸 date객체를 formatDate 로 표현 --%>
+					<td><fmt:formatDate value="${date }" pattern="yyyy년 M월 d일" /></td>
 					<td>${cardBill.installment }</td>
 				</tr>
 			</c:forEach>	
