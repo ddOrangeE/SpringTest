@@ -16,42 +16,138 @@
 <style type="text/css">
 	#wrap {
 		width:1200px;
-		height:800px;
 		margin:auto;
-	
-		background-color:yellow;
 	}
 	
-	header {
-		height:80px;
-		background-color:red;
-	}
 	
 	.main-logo {
-		width:250px;
+		width:20%;
 		height:80px;
-		background-color:green;
+		background-color:#87CEFA;
 	}
 	
+	.logo {
+		color:white;
+		font-weight:bold;
+		font-size:x-large;
+	}
+	
+	
+	.out-center {
+		display:table;
+	}
+	
+	.inner-center {
+		display:table-cell;
+		vertical-align:middle;
+		text-align:center;
+	}
+	
+	
 	.sub-logo {
-		width:950px;
+		width:80%;
 		height:80px;
-		background-color:black;
+		display:table;
+		padding-left:10px;
+	}
+	
+	.sub-logoText {
+		display:table-cell;
+		vertical-align:middle;
+		
 	}
 
+	.main-menu {
+		width:20%;
+		height:600px;
+		background-color:#87CEFA;
+	}
+	
+	.main-content {
+		width:80%;
+		height:600px;
+	}
+	
+	#nav {
+		list-style-type:none;
+		margin:0;
+		padding:0;
+		margin-left:15px;
+	}
+	
+	.nav-items {
+		color:white;
+		font-size:large;
+		margin-top:40px;
+	}
+	
+	.li {
+		margin-top:30px;
+	}
 </style>
 <body>
 
 	<div id="wrap">
 		<header class="d-flex">
-			<div class="main-logo">기상청</div>
-			<div class="sub-logo"></div>
+			<div class="main-logo out-center">
+				
+				<div class="inner-center">
+					<img width=40; src="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20100201_49%2Ffuddkdi_1265016788801zYqCq_png%2F%25B1%25E2%25BB%25F3%25C3%25BB_fuddkdi.png&type=a340" alt="기상청 로고">
+					<span class="logo">기상청</span>				
+				</div>
+			</div>
+			<div class="sub-logo">
+				<h3 class="sub-logoText">과거 날씨</h3>
+			</div>
 		</header>
 		<div class="d-flex">
-			<nav class="main-menu"></nav>
-			<section class="main-content"></section>
+			<div class="main-menu">
+				<ul id="nav">
+					<li class="li"><a class="nav-items" href="#">날씨</a></li>
+					<li class="li"><a class="nav-items" href="#">날씨입력</a></li>
+					<li class="li"><a class="nav-items" href="#">테마날씨</a></li>
+					<li class="li"><a class="nav-items" href="#">관측기후</a></li>
+				</ul>
+			
+			</div>
+			<section class="main-content">
+				<table class="table text-center">
+					<thead>
+						<tr>
+							<th>날짜</th>
+							<th>날씨</th>
+							<th>기온</th>
+							<th>강수량</th>
+							<th>미세먼지</th>
+							<th>풍속</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2015년 7월 1일</td>
+							<td><img src="http://marondal.com/material/images/dulumary/web/jstl/rainy.jpg" alt="비"></td>
+							<td>21.9</td>
+							<td>83.5mm</td>
+							<td>보통</td>
+							<td>2.9km/h</td>
+						</tr>
+					</tbody>
+				</table>
+			
+			</section>
 		</div>
-		<footer id="footer"></footer>
+		<footer id="footer">
+			
+			<div class="d-flex pt-3 ml-3">
+				<div>
+					<img width=80px; src="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20100201_49%2Ffuddkdi_1265016788801zYqCq_png%2F%25B1%25E2%25BB%25F3%25C3%25BB_fuddkdi.png&type=a340" alt="기상청 로고">
+				</div>
+				<div class="ml-3 text-secondary">
+					(07062) 서울시 동작구 여의대방로16길 61 <br>
+					Copyright2020 KMA. ALL Rights RESERVED.
+				</div>
+			</div>
+		</footer>
 	
 	
 	</div>	
