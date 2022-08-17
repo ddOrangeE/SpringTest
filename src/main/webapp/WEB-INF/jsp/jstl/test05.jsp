@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,13 +63,11 @@
 
 	.main-menu {
 		width:20%;
-		height:600px;
 		background-color:#87CEFA;
 	}
 	
 	.main-content {
 		width:80%;
-		height:600px;
 	}
 	
 	#nav {
@@ -103,8 +105,8 @@
 		<div class="d-flex">
 			<div class="main-menu">
 				<ul id="nav">
-					<li class="li"><a class="nav-items" href="#">날씨</a></li>
-					<li class="li"><a class="nav-items" href="#">날씨입력</a></li>
+					<li class="li"><a class="nav-items" href="/jstl/test05">날씨</a></li>
+					<li class="li"><a class="nav-items" href="/jstl/weatherInput">날씨입력</a></li>
 					<li class="li"><a class="nav-items" href="#">테마날씨</a></li>
 					<li class="li"><a class="nav-items" href="#">관측기후</a></li>
 				</ul>
@@ -123,14 +125,18 @@
 						</tr>
 					</thead>
 					<tbody>
+					
+					<c:forEach var="weather" items="${weathers }">
 						<tr>
-							<td>2015년 7월 1일</td>
+							<td><fmt:formatDate value="${weather.date }" pattern="yyyy년 M월 d일" /></td>
 							<td><img src="http://marondal.com/material/images/dulumary/web/jstl/rainy.jpg" alt="비"></td>
-							<td>21.9</td>
-							<td>83.5mm</td>
-							<td>보통</td>
-							<td>2.9km/h</td>
+							<td>${weather.temperatures }°C</td>
+							<td>${weather.precipitation }mm</td>
+							<td>${weather.microDust }</td>
+							<td>${weather.windSpeed }km/h</td>
 						</tr>
+					</c:forEach>
+					
 					</tbody>
 				</table>
 			
