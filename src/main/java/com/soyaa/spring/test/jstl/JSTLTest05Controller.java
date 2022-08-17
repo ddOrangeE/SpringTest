@@ -47,26 +47,37 @@ public class JSTLTest05Controller {
 		return "jstl/weather/list";
 	}
 	
-	@GetMapping("/jstl/input") 
+	@GetMapping("/jstl/weather/input") 
 	public String weatherInput() {		
 		return "jstl/weather/input";
 	}
 	
 	
-	@GetMapping("/jstl/add")
-	@ResponseBody
+	@GetMapping("/jstl/weather/add")
+	// @ResponseBody
 	public String addWeather(
-			@RequestParam("date") String date
+			@RequestParam("date") String stringDate
 			, @RequestParam("weather") String weather
 			, @RequestParam("temperatures") double temperatures
 			, @RequestParam("precipitation") double precipitation
 			, @RequestParam("microDust") String microDust
 			, @RequestParam("windSpeed") double windSpeed 
+			, Model model
 			) {
+		
+		String yyyy = stringDate.substring(0, 4);
+		String MM = stringDate.substring(6, 8);
+		String dd = stringDate.substring(10, 12);
+		
+		String date = yyyy + "-" + MM + "-" + dd;
 		
 		int count = weatherHistoryBO.addWeather(date, weather, temperatures, precipitation, microDust, windSpeed);
 		
-		return "삽입결과 : " + count;
+	
+		List<Weathers> weathers = weatherHistoryBO.getWeatherHistory();
+		model.addAttribute("weathers", weathers);
+		return "/jstl/weather/list";
+		
 	}
 	
 	

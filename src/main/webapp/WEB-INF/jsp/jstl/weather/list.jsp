@@ -43,8 +43,8 @@
 			</div>
 			
 				<ul class="nav flex-column">
-					<li class="nav-item"><a class="nav-link text-white" href="#">날씨</a></li>
-					<li class="nav-item"><a class="nav-link text-white" href="#">날씨입력</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="/jstl/weather/list">날씨</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="/jstl/weather/input">날씨입력</a></li>
 					<li class="nav-item"><a class="nav-link text-white" href="#">테마날씨</a></li>
 					<li class="nav-item"><a class="nav-link text-white" href="#">관측기후</a></li>
 				</ul>
@@ -101,11 +101,14 @@
 				</table>
 			</section>
 		</div>
-		<footer class="bg-danger d-flex">
-			<div class="mt-3 ml-4">
-				<img width="120" src="">
-			</div>
-		</footer>
+		 <footer class="border-top d-flex">
+           <div class="mt-3 ml-4"> <img width="120" src="https://www.weather.go.kr/w/resources/image/foot_logo.png"></div>
+           <div class="copyright mt-2 ml-3">
+               <small class="text-secondary">(07062) 서울시 동작구 여의대방로16길 61  <br>
+               Copyright@2020 KMA. All Rights RESERVED.</small>
+
+           </div>
+       </footer>
 	</div>
 	
 </body>
