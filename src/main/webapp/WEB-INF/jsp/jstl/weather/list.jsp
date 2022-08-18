@@ -37,7 +37,7 @@
 			<nav class="main-menu col-3">
 			<div class="d-flex mt-2">
 				<div class="col-2">
-				<img width="25" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20100201_49%2Ffuddkdi_1265016788801zYqCq_png%2F%25B1%25E2%25BB%25F3%25C3%25BB_fuddkdi.png&type=a340">
+				<img width="25" src="https://www.weather.go.kr/w/resources/image/foot_logo.png">
 				</div>
 				<h3 class="text-white col-10">기상청</h3>
 			</div>

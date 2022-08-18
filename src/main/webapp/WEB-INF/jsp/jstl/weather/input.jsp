@@ -147,7 +147,7 @@
 		$(document).ready(function() {
 			
 			$("#date").datepicker({
-				dateFormat:"yy월 mm일 dd일"
+				dateFormat:"yy년 mm월 dd일"
 			});
 		});
 	
