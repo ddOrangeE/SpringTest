@@ -91,4 +91,23 @@ public class FavoriteController {
 		
 		return map;
 	}
+	
+	// 삭제
+	@GetMapping("/delete")
+	@ResponseBody
+	public Map<String, String> deleteFavorite(@RequestParam("id") int id) {
+		
+		int count = favoriteBO.deleteFavorite(id);
+		
+		Map<String, String> map = new HashMap<>();
+		
+		if(count == 1) {
+			map.put("result", "success");
+		} else {
+			map.put("result", "fail");
+		}
+		
+		return map;
+		
+	}
 }

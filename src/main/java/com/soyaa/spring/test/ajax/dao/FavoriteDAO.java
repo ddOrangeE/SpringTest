@@ -18,4 +18,6 @@ public interface FavoriteDAO {
 	
 	// url 중복여부
 	public int selectCountDuplicateUrl(@Param("url") String url);
+	
+	public int deleteFavorite(@Param("id") int id);
 }

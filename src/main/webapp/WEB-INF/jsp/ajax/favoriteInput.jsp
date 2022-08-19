@@ -51,6 +51,8 @@
 		$("#checkBtn").on("click", function(){
 			let url = $("#urlInput").val();
 			
+			isCheck = true;
+			
 			if(url == "") {
 				alert("주소를 입력하세요!");
 				return;
@@ -72,6 +74,7 @@
 					} else {
 						$("#duUrl").addClass("d-none");
 						$("#noDuUrl").removeClass("d-none");
+						isDuplicate = false;
 					}
 				}
 				, error:function() {
@@ -111,12 +114,12 @@
 			
 			
 			// 중복체크를 했는지
-			if(중복쳌크를 했는지) {
+			if(isCheck == false) {
 				alert("중복체크를 해주세요.");
 				return;
 			}
 			// 중복 여부
-			if(중복되었는지) {
+			if(isDuplicate) {
 				alert("중복되었습니다");
 				return;
 			}
