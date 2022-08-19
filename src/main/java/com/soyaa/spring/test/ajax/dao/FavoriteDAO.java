@@ -16,4 +16,6 @@ public interface FavoriteDAO {
 	
 	public List<Favorite> selectFavorite();
 	
+	// url 중복여부
+	public int selectCountDuplicateUrl(@Param("url") String url);
 }

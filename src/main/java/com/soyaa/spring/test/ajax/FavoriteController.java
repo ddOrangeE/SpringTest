@@ -24,7 +24,7 @@ public class FavoriteController {
 	@Autowired
 	private FavoriteBO favoriteBO;
 	
-	
+	// View 형식
 	@GetMapping("/input")
 	public String favoriteInput() {
 		
@@ -36,12 +36,19 @@ public class FavoriteController {
 		
 		List<Favorite> favoriteList = favoriteBO.getFavoriteList();
 		
-		model.addAttribute(favoriteList);
+		// value 만 넣었는데 왜 되징..? model.addAttribute(favoriteList); 이것도 됐음
+		// spring framework 가 알아서 해주는 것들이 되게 많음, requestParam 같은 거나, Param 같은 것도 안붙여도 알아서 해줄 수 있는데 내가 붙여주는 게 에러찾기 쉬움
+		
+		model.addAttribute("favoriteList", favoriteList);
 		
 		return "ajax/favoriteList";
 	}
 	
-	@GetMapping("/add")
+	// redirect :입력과정이나, 입력한 내용에 문제가 있었을 때 무조건 페이지 이동이 되니까 문제발견 어려움, 사용자에게 이질감 줄 수 있음
+	// ajax : 문제가 생겼을 땐 그 상태 그대로 문제를 알려줄 수 있기 때문에 Input 하는 것은 ajax 를 통해서 하는 게 더 좋다!!
+	
+	// API 형식
+	@PostMapping("/add")
 	@ResponseBody
 	public Map<String, String> addFavorite(
 			@RequestParam("name") String name
@@ -51,13 +58,37 @@ public class FavoriteController {
 		
 		Map<String, String> map = new HashMap<>();
 		
+		// 직접 json 문자열로 만들어줄 수 있지만 어려우니까 "{\"result\": 이런식으로 해야됨,,
+		// 이렇게 json 형태와 비슷한 map 으로 return 해주면 responseBody가 {"":""} 과 같은 형태로 만들어준다!!
+		// {"result":"success"}
 		if(count == 1) {
 			map.put("result", "success");
-		} else {
+		} else { // {"result":"fail"}
 			map.put("result", "fail");
 		}
 		
 		return map;
 	}
 	
+	// 이렇게 API 만들면 ajax를 쓰는 건 다른 개발자
+	
+	// url 중복 여부 api
+	@GetMapping("/is_duplicate")
+	@ResponseBody
+	public Map<String, Boolean> isDuplicate(@RequestParam("url") String url) {
+		
+		boolean isDuplicate = favoriteBO.isDuplicateUrl(url);
+		
+		Map<String, Boolean> map = new HashMap<>();
+		
+		// {"is_duplicate":ture} or {"is_duplicate":false}
+		
+		if(isDuplicate) {
+			map.put("is_duplicate", true);
+		} else {
+			map.put("is_duplicate", false);
+		}
+		
+		return map;
+	}
 }

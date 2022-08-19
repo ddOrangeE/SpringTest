@@ -4,6 +4,8 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  <mapper namespace="com.soyaa.spring.test.ajax.dao.FavoriteDAO">
+
+<!-- parameterType이 둘다 String 이지만 여러개라면 map으로 잡는 게 편하다 -->
  	<insert id="insertFavorite" parameterType="map">
  		INSERT INTO 
  			`favorite`
@@ -31,5 +33,14 @@
  			, `updatedAt`
  		FROM 
  			`favorite`
+ 	</select>
+ 	
+ 	<select id="selectCountDuplicateUrl" parameterType="string" resultType="int">
+ 		SELECT 
+ 			count(*)
+ 		FROM
+ 			`favorite`
+ 		WHERE
+ 			`url` = #{url}	
  	</select>
  </mapper>
