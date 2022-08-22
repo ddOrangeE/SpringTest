@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 
-       <title>통나무 펜션</title>
+       <title>통나무 예약목록</title>
 
        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,7 +19,7 @@
 
        <link rel="stylesheet" href="style.css" type="text/css">
        
-       <link rel="stylesheet" href="/ajax/pension/pensionStyle.css" type="text/css">
+       <link rel="stylesheet" href="/ajax/pension/pensionStyle.css" type="text/css"> 
    </head>
 
    <body>
@@ -30,7 +30,7 @@
        <div id="wrap">
             <%@ include file="/WEB-INF/jsp/ajax/pension/header.jsp" %>
 
-  			<%@ include file="/WEB-INF/jsp/ajax/pension/mainContent.jsp" %>		
+  			<%@ include file="/WEB-INF/jsp/ajax/pension/listContent.jsp" %>		
 			
 			<%@ include file="/WEB-INF/jsp/ajax/pension/footer.jsp" %>	
 			
