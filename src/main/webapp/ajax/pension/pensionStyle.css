@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#wrap {
+    width: 1200px;
+    margin: auto;
+}
+
+.name {
+    height: 100px;
+}
+
+.main-menu {
+    height: 40px;
+    background-color:burlywood;
+}
+
+.bannerImg {
+    height: 500px;
+}
+
+.contents {
+    height: 300px;
+}
+
+.reservation {
+    background-color:rgba(176, 139, 44, 0.773);
+}
+
+.check-reservation {
+	background-color:rgb(243, 151, 32);
+}
+
+.inquiry {
+    background-color: rgba(176, 139, 44, 0.773);
+}
+
+footer {
+  	color:rgba(128, 128, 128, 0.842);
+    font-size: small;
+}

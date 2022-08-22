@@ -33,6 +33,8 @@
 			<input type="text" class="form-control" id="urlInput"> 
 			<button type="button" class="btn btn-info ml-2" id="checkBtn">중복확인</button>		
 		</div>
+		
+		<%-- 선생님은 div 두개 주고 class 에 small 속성 넣음 --%>
 		<small class="d-none text-danger" id="duUrl">중복된 url 입니다.</small>
 		<small class="d-none text-info" id="noDuUrl">추가 가능한 url 입니다.</small>
 		
@@ -42,8 +44,30 @@
 <script>
 	$(document).ready(function(){
 		
-		var isCheck = false;
-		var isDuplicate = true;
+		// var - 전역변수
+		// 중복체크 확인 상태 저장 변수
+		var isCheck = false;  // 처음엔 체크 안한 상태로 지정 (보수적으로 지정하는 게 제일 좋다 -- 통과 안될 수 있는 값)
+		
+		// 중복 상태 저장 변수
+		var isDuplicate = true;   // 처음엔 중복된 상태로 지정
+		
+		// 이런 형태의 전역변수는 최소화해주는 것이 좋다
+		// 기본적으로 전역변수는 어떤 곳에도 활용할 수 있도록 하는 것인데, 반대로 말하면 어디서 값이 변경되었는지 확인하는 데 힘들다. -- 하나를 만들었는데 여러곳에 영향을 미치기 때문에 유지보수에도 힘듦 -> 플래네 형태
+		
+		// change를 하면 포커싱이 다른 곳에 가야 바뀌는 것!! 즉 입력이 다 끝나야 바뀌는 것이당
+		// $("#urlInput").change(function() {
+		// $("#urlInput").keyup(function() {  
+			
+		// 선생님이 사용하신 이벤트
+		$("#urlInput").on("input", function() {
+			isCheck = false;
+			isDuplicate = true;
+			
+			$("#noDuUrl").addClass("d-none");
+			$("#duUrl").addClass("d-none");
+		});
+		
+		
 		
 		// 이벤트는 딱 하나씩 처리하게 하는게 깔끔하다
 		// 이벤트 안에 이벤트 쓰는 것도 되는데 최후의 방법,, (엄청 복잡함)
@@ -51,7 +75,6 @@
 		$("#checkBtn").on("click", function(){
 			let url = $("#urlInput").val();
 			
-			isCheck = true;
 			
 			if(url == "") {
 				alert("주소를 입력하세요!");
@@ -59,22 +82,34 @@
 			}
 			
 			
+			if(!(url.startsWith("http://") || url.startsWith("https://"))) {
+				alert("주소 형식이 잘못되었습니다.");
+				return;
+			}
+			
+			
 			$.ajax({
-				type:"get"
+				type:"post"
 				, url:"/ajax/favorite/is_duplicate"
 				, data:{"url":url}
 			
 				
 				, success:function(data) {
+					
+					isCheck = true;
+					// success 로 들어왔을 때 true 로 해주는 것이 가장 안전!!
+					
 					if(data.is_duplicate) {
 						
-						// 얘는 클래스 이름에 . 안붙여줘도 됨 
+						// 얘는 클래스 이름에 . 안붙여줘도 됨
+						// jquery 안에 show hide 가 있지만, d-none은 먹히지 않음
+						isDuplicate = true;
 						$("#duUrl").removeClass("d-none");
-						$("#noDuUrl").addClass("d-none")
+						$("#noDuUrl").addClass("d-none");
 					} else {
+						isDuplicate = false;
 						$("#duUrl").addClass("d-none");
 						$("#noDuUrl").removeClass("d-none");
-						isDuplicate = false;
 					}
 				}
 				, error:function() {
@@ -98,7 +133,7 @@
 			// form으로 감싸주었을 때 button type 이 submit 이면 return false 를 해주어야 버튼 자체의 페이지 이동 속성을 막을 수 있다
 			// form으로 묶여져 있는 것이 아닐 때엔 return false 가 딱히 의미 없음
 			if(name == "") {
-				alert("이름을 입력하세요!");
+				alert("제목을 입력하세요!");
 				return;
 			}
 			
@@ -113,14 +148,16 @@
 			} // 요런 거 이산수학
 			
 			
-			// 중복체크를 했는지
-			if(isCheck == false) {
-				alert("중복체크를 해주세요.");
+			// url 중복 체크 여부 확인		
+			// 중복체크를 했는지 (중복체크 여부 확인)
+			// if(isCheck == false) {
+			if(!isCheck) {
+				alert("주소 중복체크 여부 확인해주세요.");
 				return;
 			}
-			// 중복 여부
+			// 중복 여부 (중복상태 여부 확인)
 			if(isDuplicate) {
-				alert("중복되었습니다");
+				alert("중복된 url 입니다.");
 				return;
 			}
 			
@@ -156,6 +193,8 @@
 		});
 		
 	});
+	
+	// 최대한 간결하게 이벤트를 관리하는 게 좋다
 </script>	
 	
 </body>

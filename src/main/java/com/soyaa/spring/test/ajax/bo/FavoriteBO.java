@@ -27,11 +27,18 @@ public class FavoriteBO {
 		
 		int count = favoriteDAO.selectCountDuplicateUrl(url);
 		
-		if(count == 0) {
-			return false;
-		} else {
-			return true;
-		}
+//		if(count == 0) {
+//			return false;
+//		} else {
+//			return true;
+//		}
+		
+//		count != 0; 일 때 true 가 return
+		
+		// 즉 이렇게 까지 줄일 수 있다
+//		return count != 0;
+		
+		return favoriteDAO.selectCountDuplicateUrl(url) != 0;
 	}
 	
 	public int deleteFavorite(int id) {

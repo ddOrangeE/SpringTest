@@ -72,29 +72,36 @@ public class FavoriteController {
 	
 	// 이렇게 API 만들면 ajax를 쓰는 건 다른 개발자
 	
-	// url 중복 여부 api
-	@GetMapping("/is_duplicate")
-	@ResponseBody
+	// url을 입력받고, 중복된 상태인지를 알려주는 api
+	// {"is_duplicate", : true} or {"is_duplicate", : true}
+	@PostMapping("/is_duplicate")
+	@ResponseBody  // return 되는 데이터 타입에 맞춰서 json 형태로 바꾸어준다
 	public Map<String, Boolean> isDuplicate(@RequestParam("url") String url) {
 		
-		boolean isDuplicate = favoriteBO.isDuplicateUrl(url);
+//		boolean isDuplicate = favoriteBO.isDuplicateUrl(url);
 		
 		Map<String, Boolean> map = new HashMap<>();
 		
-		// {"is_duplicate":ture} or {"is_duplicate":false}
+		// {"is_duplicate":true} or {"is_duplicate":false}
 		
-		if(isDuplicate) {
-			map.put("is_duplicate", true);
-		} else {
-			map.put("is_duplicate", false);
-		}
+//		if(isDuplicate) {
+//			map.put("is_duplicate", true);
+//		} else {
+//			map.put("is_duplicate", false);
+//		}
+		
+//		map.put("is_duplicate", isDuplicate);
+		
+		map.put("is_duplicate", favoriteBO.isDuplicateUrl(url));
 		
 		return map;
 	}
 	
 	// 삭제
+	// id를 기반으로 즐겨찾기를 삭제하는 기능 api
+	// {"result":"success"} or {"result":"fail"}
 	@GetMapping("/delete")
-	@ResponseBody
+	@ResponseBody    // api 는 데이터 그대로 return 되어야 한다 그렇지 않으면 404 에러가 난다!!
 	public Map<String, String> deleteFavorite(@RequestParam("id") int id) {
 		
 		int count = favoriteBO.deleteFavorite(id);
