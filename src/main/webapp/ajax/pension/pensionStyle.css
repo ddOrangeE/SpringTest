@@ -5,6 +5,14 @@
     margin: auto;
 }
 
+#mainLogo {
+  text-decoration-line: none;
+  color:black;
+/*   text-decoration-line: underline; */
+/*   text-decoration-line: overline; */
+/*   text-decoration-line: line-through; */
+/*   text-decoration-line: underline line-through overline; */
+}
 .name {
     height: 100px;
 }
@@ -38,3 +46,4 @@ footer {
   	color:rgba(128, 128, 128, 0.842);
     font-size: small;
 }
+

@@ -24,4 +24,30 @@
  			`booking`
  		WHERE `id` = #{id}
  	</delete>
+ 	
+ 	<insert id="insertPension" parameterType="map">
+ 		INSERT INTO 
+ 			`booking`
+ 		(
+ 			`name`
+ 			, `headcount`
+ 			, `day`
+ 			, `date`
+ 			, `phoneNumber`
+ 			, `state`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUE
+ 		(
+ 			#{name}
+ 			, #{headcount}
+ 			, #{day}
+ 			, #{date}
+ 			, #{phoneNumber}
+ 			, #{state}     <!-- 그냥 쿼리를 완성할 때 값을 써버려도 된당 -->
+ 			, now()
+ 			, now()
+ 		)
+ 	</insert>
  </mapper>

@@ -28,16 +28,26 @@
 			<td>${pension.phoneNumber }</td>
 			
 			<c:choose>
+				<%-- 상태가 확정이면 text-success --%>
 				<c:when test="${pension.state eq '확정' }">			
 				<td class="text-success">${pension.state }</td>
 				</c:when>
 				
+				<%-- 상태가 확정이면 text-info --%>
+				<c:when test="${pension.state eq '대기중' }">			
+				<td class="text-info">${pension.state }</td>
+				</c:when>
+				
+				<%-- 다른 값이 들어오면 text-success --%>
 				<c:otherwise>			
-				<td class="text-primary">${pension.state }</td>
+				<td class="text-dark">${pension.state }</td>
 				</c:otherwise>
 			</c:choose>
 			<td>
-				<button type="submit" class="btn btn-danger btn-sm delete-btn" data-pension-id="${pension.id }">삭제</button>
+				<%-- form tag 활용할 때 button type = "submit"
+					기본은 type을 button으로 잡아준다
+				 --%>
+				<button type="button" class="btn btn-danger btn-sm delete-btn" data-pension-id="${pension.id }">삭제</button>
 			</td>
 		</tr>
 	</c:forEach>
@@ -50,7 +60,6 @@
 		$(".delete-btn").on("click", function(){
 			
 			let pensionId = $(this).data("pension-id");
-			alert(pensionId);
 			
 			$.ajax({
 				type:"get"
