@@ -23,7 +23,8 @@ public interface PensionDAO {
 			, @Param("phoneNumber") String phoneNumber
 			, @Param("state") String state);
 	
-	public List<Pension> selectPensionByParameter(
+	// 한행 조회할 거니까 List 아니고 하나의 객체!
+	public Pension selectPensionByParameter(
 			@Param("name") String name
 			, @Param("phoneNumber") String phoneNumber);
 }

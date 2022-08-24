@@ -36,7 +36,7 @@ public class PensionBO {
 		// 대기중, 확정을 컨트롤러 에서 받는 건 아닌 것 같고, 최대한 DAO 를 바보로 만드는 것이 좋기 때문에 BO가 최적!
 	}
 	
-	public List<Pension> checkReservation(String name, String phoneNumber) {
-		return pensionDAO.selectPension();
+	public Pension checkReservation(String name, String phoneNumber) {
+		return pensionDAO.selectPensionByParameter(name, phoneNumber);
 	}
 }

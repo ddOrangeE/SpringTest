@@ -92,18 +92,52 @@ public class PansionController {
 		return map;
 	}
 
-	@PostMapping("/check")
-	public String checkReservation(
+	// 이름과 전화번호가 일치하는 정보는 딱하나만 있다고 가정하에 간다!! (여러개면 처리하기 힘듦)
+	
+	// 이걸 어떻게 전달할까
+	// [] {} json 형태로 한 번 표현 해보자
+	// {
+	//		"name":"김인규"
+	//		"phoneNumber":"010-1234-5678"
+	//		"date":"2022-08-12"  
+	// }
+	// 이런 형태로 데이터를 만들어내면 가장 이상적인 json 형태이 듯 -> 이렇게 하면 별로 규격화되어 보이지 않아
+	// 규격화 한 json 
+	// {
+	// "result" : "success",
+	// "data":{
+		//		"name":"김인규"
+		//		"phoneNumber":"010-1234-5678"
+		//		"date":"2022-08-12"  
+		// 		}
+	// }
+	@PostMapping("/find")
+	@ResponseBody
+	public Map<String, Object> findReservation(
 			@RequestParam("name") String name
-			, @RequestParam("phoneNumber") String phoneNumber
-			, Model model) {
+			, @RequestParam("phoneNumber") String phoneNumber) {
 		
-		List<Pension> reservation = pensionBO.checkReservation(name, phoneNumber);
+		Pension reservation = pensionBO.checkReservation(name, phoneNumber);
+//		return reservation;   // responseBody 를 붙이고 클래스를 그대로 return 해주면 멤버변수 이름을 key 로, 값을 value 로 해서 json형태로 만들어준다
+//		// http 컴버셔(?) 가 어? 클래스네? 그래서 jackson 라이브러리가 바꿔주고 다시 전달해주고 요런식으로
+
+		// 규격화된 json : 명확하게 구조화할 수 있음
 		
-		model.addAttribute("reservation", reservation);
+		Map<String, Object> result = new HashMap<>();
 		
+		if(reservation != null) {
+			result.put("result", "success");
+			result.put("data", reservation);
+		} else {
+			result.put("result", "fail");
+		}
 		
+		return result;
 	}
 
-
+	// PostMapping일 때 확인하려면 ajax를 짜거나 form으로 묶어줘서 확인해야하는데 간단하게 확인할 수 있게 해주는 프로그램들이 있다. 
+	// PostMan 다운로드!!
+	
+	// json 으로 만드는 이유 : 규격화하기 위해서 
+	
 }

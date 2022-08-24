@@ -39,13 +39,13 @@
                                    <div><label class="text-light mt-4">전화번호</label></div>
                                </div>
                                <div class="col-9 mt-2 mr-3">    
-                                   <div><input type="text" class="btn w-75"></div>
-                                   <div><input type="password" class="btn w-75 mt-4"></div>
+                                   <div><input type="text" class="btn w-75" id="nameInput"></div>
+                                   <div><input type="password" class="btn w-75 mt-4" id="phoneNumberInput"></div>
                                    
                                </div>
 
                            </div>
-                           <button type="button" style="float:right;" class="btn bg-success text-light mt-3 mr-5">조회 하기</button>
+                           <button type="button" style="float:right;" class="btn bg-success text-light mt-3 mr-5" id="lookupBtn">조회 하기</button>
                        </div>
                        
                    </div>
@@ -56,3 +56,60 @@
                        </div>
                    </div>
                </article>
+               
+               <script>
+               	$(document).ready(function(){
+               		
+               		$("#lookupBtn").on("click", function(){
+               			
+               			let name = $("#nameInput").val();
+               			let phoneNumber = $("#phoneNumberInput").val();
+               			
+               			if(name == "") {
+               				alert("이름을 입력하세요.");
+               				return;
+               			}
+               			
+               			if(phoneNumber == "") {
+               				alert("전화번호를 입력하세요.");
+               				return;
+               			}
+               			
+               			$.ajax({
+               				type:"post"
+               				, url:"/ajax/pension/find"
+               				, data:{"name":name, "phoneNumber":phoneNumber}
+               				, success:function(data) {
+               					
+               					// responseBody 가 비워진 경우
+               			/*		if(data == "") {
+               						alert("조회된 결과가 없습니다.");
+               					} else {               						
+               					alert("이름 : " + data.name + "\n" 
+               							+ "날짜 : " + data.date.slice(0, 10) + "\n"
+               							+ "숙박일수 : " + data.day + "\n"
+               							+ "상태 : " + data.state);
+               					}
+               				}
+               				, error:function() {
+               					alert("조회에러");
+               				} */
+               				
+               				// 규격화된 data 처리
+               					if(data.result == "fail") {
+               						alert("조회된 결과가 없습니다.");
+               					} else {               						
+               					alert("이름 : " + data.data.name + "\n" 
+               							+ "날짜 : " + data.data.date.slice(0, 10) + "\n"
+               							+ "숙박일수 : " + data.data.day + "\n"
+               							+ "상태 : " + data.data.state);
+               					}
+               				}
+               				, error:function() {
+               					alert("조회에러");
+               				}
+               			});
+               		});
+               		
+               	});
+               </script>

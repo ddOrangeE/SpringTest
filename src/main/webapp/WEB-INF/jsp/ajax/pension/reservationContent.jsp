@@ -58,8 +58,20 @@
     				return;
     			}
     			
+    			// 숙박일수 숫자로만 표현되었는지 확인
+    			// 간단하게 확인 할수 있는 방법이 javascript 에 있다 : isNaN (= Not a Number)
+    			if(isNaN(day)) {   // true 이면 숫자가 아닌 것
+    				alert("숙박일수는 숫자만 입력 가능합니다.");
+    				return;
+    			}
+    			
     			if(headcount == "") {
     				alert("숙박인원을 입력하세요.");
+    				return;
+    			}
+    			
+    			if(isNaN(headcount)) {
+    				alert("숙박인원은 숫자만 입력 가능합니다.");
     				return;
     			}
     			
