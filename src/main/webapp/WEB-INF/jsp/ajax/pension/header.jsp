@@ -11,8 +11,8 @@
                <ul class="nav nav-fill">
                    <li class="nav-item"><a href="#" class="nav-link text-light">펜션소개</a></li>
                    <li class="nav-item"><a href="#" class="nav-link text-light">객실보기</a></li>
-                   <li class="nav-item"><a href="/ajax/pension/list" class="nav-link text-light">예약안내</a></li>
-                   <li class="nav-item"><a href="#" class="nav-link text-light">커뮤니티</a></li>
+                   <li class="nav-item"><a href="/ajax/pension/reservation" class="nav-link text-light">예약하기</a></li>
+                   <li class="nav-item"><a href="/ajax/pension/list" class="nav-link text-light">예약목록</a></li>
                </ul>
            </nav>
            

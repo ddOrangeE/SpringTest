@@ -92,7 +92,18 @@ public class PansionController {
 		return map;
 	}
 
-
+	@PostMapping("/check")
+	public String checkReservation(
+			@RequestParam("name") String name
+			, @RequestParam("phoneNumber") String phoneNumber
+			, Model model) {
+		
+		List<Pension> reservation = pensionBO.checkReservation(name, phoneNumber);
+		
+		model.addAttribute("reservation", reservation);
+		
+		
+	}
 
 
 }

@@ -17,9 +17,13 @@ public interface PensionDAO {
 	
 	public int insertPension(
 			@Param("name") String name
-			, @Param("date") Date date
+			, @Param("date") String date
 			, @Param("day") int day
 			, @Param("headcount") int headcount
 			, @Param("phoneNumber") String phoneNumber
 			, @Param("state") String state);
+	
+	public List<Pension> selectPensionByParameter(
+			@Param("name") String name
+			, @Param("phoneNumber") String phoneNumber);
 }
